@@ -1,6 +1,6 @@
 # 10FastFingers.com Bot with AntiAntiCheat
 
-10FastFingers.com is a speed typing website where you can test your typing speed.
+[10fastfingers](www.10fastfingers.com) is a speed typing website where you can test your typing speed.
 
 Me being bored and busy with other important tasks, I decide that it'd be best to ignore them and create a bot, how responsible.
 
