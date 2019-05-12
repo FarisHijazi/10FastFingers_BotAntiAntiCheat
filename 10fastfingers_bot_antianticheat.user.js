@@ -168,7 +168,8 @@ function unsafeEval(func, ...arguments) {
             }).then(function (result) {
                 var msg = 'Time taken: ' + (Date.now() - start_time) / 1000 + '(s)';
                 console.log(msg);
-                $('#hackit-status-div').html($('#hackit-status-div').html() + '<br>' + msg);
+                let $statusDiv = $('#hackit-status-div');
+                $statusDiv.html($statusDiv.html() + '<br>' + msg);
 
                 if (debug) return; // don't auto-submit if debug
 
