@@ -24,19 +24,19 @@ or
 
 - installing it as a userscript.
 
-### Method1: Pasting to the console
+### Method1 (Simple): Pasting to the console
 
 1. Copy the entire script from here [here](10fastfingers_bot_antianticheat.user.js) or [RAW link](/../../raw/master/10fastfingers_bot_antianticheat.user.js) (`CTRL+A`, `CTRL+C`)
-2. On the [10fastfingers](www.10fastfingers.com) page,  
-    open the developer console in Google Chrome `CTRL+SHIFT+J`, then navigate to the `console` tab
-4. Paste (CTRL+V), then hit (ENTER)
-5. Press the `HACKIT` button that was added to the page
+2. Paste in the [10fastfingers](www.10fastfingers.com) page,  
+    - open the developer console in Google Chrome `CTRL+SHIFT+J`, (you should be on the `console` tab)
+    - Paste (CTRL+V), then hit (ENTER)
+3. Press the `HACKIT` button that was added to the page
 
 ### Method2: Downloading a UserScript client (Tampermonkey/Greasemonkey)
 1. Download a UserScript browser extension like [Tampermonkey](https://www.tampermonkey.net/)
-2. Then install the script by clicking the [RAW link](/../../raw/master/10fastfingers_bot_antianticheat.user.js)
-3. Reload your [10fastfingers](www.10fastfingers.com) page (CTRL+R does NOT work, you must re-enter the address in the address bar)
-4. Press the `HACKIT` button that was added to the page
+2. Install the script (click the [RAW link](/../../raw/master/10fastfingers_bot_antianticheat.user.js), you should be redirected to the install page, otherwise you don't have a UserScript client installed)
+3. Reload your [10fastfingers](www.10fastfingers.com) page (CTRL+R does NOT work, you must re-enter the address in the address bar)  
+    Press the `HACKIT` button that was added to the page
 
 
 ## Notices
