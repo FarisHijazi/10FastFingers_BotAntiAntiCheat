@@ -28,6 +28,10 @@
  */
 
 
+// set this to a hier rate so that there will be a probability of wrong words (for more realistic results)
+// set this to a value between 0 and 1. Recommended: 0.01
+var errorRate = 0.0;
+
 /*
 ────────────────────────────────
 ───────────────██████████───────
@@ -129,8 +133,12 @@ function unsafeEval(func, ...arguments) {
 
                     const hackit = function () {
                         if (word_idx < words.length) {
+                            var word = words[word_idx];
+                            if (Math.random() < errorRate) {
+                                word = 'asdf'; // wrong word on purpose
+                            }
                             $(options.inputField)
-                                .val($(options.inputField).val() + words[word_idx] + ' ')
+                                .val($(options.inputField).val() + word + ' ')
                                 .trigger({type: 'keyup', which: 32}); // send "spacebar"
                             word_idx++;
                             setTimeout(hackit, interval_per_word);
