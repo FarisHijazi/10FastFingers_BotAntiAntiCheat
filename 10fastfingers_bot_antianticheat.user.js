@@ -3,7 +3,7 @@
 // @description  Typing bot for 10fastfingers.com, can also bypass anticheat captcha
 // @namespace    https://github.com/FarisHijazi
 // @author       Faris Hijazi
-// @version      1.1
+// @version      1.2
 // @icon         https://www.google.com/s2/favicons?domain=10fastfingers.com
 // @match        https://10fastfingers.com*
 // @include      https://10fastfingers.com*
@@ -16,9 +16,6 @@
  * Just start the game, when you're ready to type, DON'T TYPE ANYTHING, open up
  * your Developer Tools in Chrome (CTRL+SHIFT+J) and click Console tab, and
  * then paste the whole code below, then press enter, and enjoy the show.
- *
- *
- * Search for errorRate (line 128) in this code, set this to a higher rate so that there will be a probability of wrong words (for more realistic results)
  *
  * Copy and paste me in the console!
  */
@@ -126,6 +123,7 @@ function unsafeEval(func, ...arguments) {
             try {
                 // using unsafeEval to have higher privelages to send the keyevents (otherwise you'd have to just paste it all in the console)
                 unsafeEval(function (words, options, resolve) {
+                    // set this to a hier rate so that there will be a probability of wrong words (for more realistic results)
                     var errorRate = 0.01;
 
                     const magicConstant = 1 / 750;
@@ -211,17 +209,28 @@ function unsafeEval(func, ...arguments) {
         $('#start-btn').click();
 
         return $('#word-img img').on('load', function () {
-            recognize().then(fillText)
-                .then(function () {
-                    var bgUrl = bgUrlsSuccess.random;
+            var startTime = new Date().getTime();
+            var wpm = parseFloat($('#speed-inputfield').val());
+            var targetWPS = wpm * 60;
 
-                    $('#on-top').css({
-                        'background-image': 'url("' + bgUrl + '")', // add success sunglasses photo
-                        'background-size': 'auto',
-                        'background-repeat': 'no-repeat',
-                        'background-position': 'center center',
-                    }).append('<img src="' + bgUrl + '" style="visibility:hidden;" alt="HACKERMAN">');
-                });
+            (recognize()
+             .then((text) => {
+                var OCRDuration = (new Date().getTime() - startTime)/1000;
+                var timeDelay = (text.text.split(' ').length / targetWPS)*1000;
+                console.log('timeDelay', timeDelay, 'delay with start time:', timeDelay + OCRDuration);
+                return new Promise(resolve => setTimeout(() => resolve(text), timeDelay + OCRDuration));
+            })
+             .then(fillText)
+             .then(function () {
+                var bgUrl = bgUrlsSuccess.random;
+
+                $('#on-top').css({
+                    'background-image': 'url("' + bgUrl + '")', // add success sunglasses photo
+                    'background-size': 'auto',
+                    'background-repeat': 'no-repeat',
+                    'background-position': 'center center',
+                }).append('<img src="' + bgUrl + '" style="visibility:hidden;" alt="HACKERMAN">');
+            }));
         });
 
         // ===== image util functions
@@ -360,6 +369,13 @@ function unsafeEval(func, ...arguments) {
             .append( // append div to show status
                 '<div id="hackit-status-div">'
             );
+        $('#on-top').append( // appending speed inputfield
+            // .append('<input id="speed-inputfield" value="250" style="width: 80px;"><span>input words per minute</span>')
+            $('<div>')
+                .append($('<input>').attr({'id': 'speed-inputfield'}).css({width: '80px'}).val(250))
+                .append($('<span>').text('input target words per minute'))
+        );
+
     }
 })();
 
