@@ -3,7 +3,7 @@
 // @description  Typing bot for 10fastfingers.com, can also bypass anticheat captcha
 // @namespace    https://github.com/FarisHijazi
 // @author       Faris Hijazi
-// @version      1.0
+// @version      1.1
 // @icon         https://www.google.com/s2/favicons?domain=10fastfingers.com
 // @match        https://10fastfingers.com*
 // @include      https://10fastfingers.com*
@@ -17,6 +17,9 @@
  * your Developer Tools in Chrome (CTRL+SHIFT+J) and click Console tab, and
  * then paste the whole code below, then press enter, and enjoy the show.
  *
+ *
+ * Search for errorRate (line 128) in this code, set this to a higher rate so that there will be a probability of wrong words (for more realistic results)
+ *
  * Copy and paste me in the console!
  */
 
@@ -28,9 +31,6 @@
  */
 
 
-// set this to a hier rate so that there will be a probability of wrong words (for more realistic results)
-// set this to a value between 0 and 1. Recommended: 0.01
-var errorRate = 0.0;
 
 /*
 ────────────────────────────────
@@ -126,6 +126,8 @@ function unsafeEval(func, ...arguments) {
             try {
                 // using unsafeEval to have higher privelages to send the keyevents (otherwise you'd have to just paste it all in the console)
                 unsafeEval(function (words, options, resolve) {
+                    var errorRate = 0.01;
+
                     const magicConstant = 1 / 750;
                     const interval_per_word = !isNaN(options.wpm) && options.wpm > 0 ? 1000 * 60 / options.wpm - magicConstant : 0; // in milliseconds
                     var word_idx = 0;
