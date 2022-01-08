@@ -7,6 +7,7 @@
 // @icon         https://www.google.com/s2/favicons?domain=10fastfingers.com
 // @match        https://10fastfingers.com*
 // @include      https://10fastfingers.com*
+// @require      https://code.jquery.com/jquery-3.4.0.min.js
 // @grant        unsafeWindow
 // @run-at       document-idle
 // ==/UserScript==
